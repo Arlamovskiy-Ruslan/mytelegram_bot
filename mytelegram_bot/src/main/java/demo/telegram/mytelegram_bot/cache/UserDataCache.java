@@ -1,7 +1,7 @@
 package demo.telegram.mytelegram_bot.cache;
 
 import demo.telegram.mytelegram_bot.botapi.BotState;
-import demo.telegram.mytelegram_bot.botapi.handlers.UserProfileData;
+import demo.telegram.mytelegram_bot.botapi.handlers.fillingprofile.UserProfileData;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

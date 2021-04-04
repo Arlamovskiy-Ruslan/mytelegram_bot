@@ -1,4 +1,4 @@
-package demo.telegram.mytelegram_bot.botapi.handlers;
+package demo.telegram.mytelegram_bot.botapi.handlers.fillingprofile;
 
 import lombok.AccessLevel;
 import lombok.Data;
