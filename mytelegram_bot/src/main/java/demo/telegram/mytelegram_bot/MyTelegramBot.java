@@ -1,6 +1,7 @@
 package demo.telegram.mytelegram_bot;
 
 
+import demo.telegram.mytelegram_bot.botapi.TelegramFacade;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
@@ -13,8 +14,11 @@ public class MyTelegramBot extends TelegramWebhookBot {
     private String botUserName;
     private String botToken;
 
-    public MyTelegramBot(DefaultBotOptions options) {
-        super(options);
+    private TelegramFacade telegramFacade;;
+
+    public MyTelegramBot(DefaultBotOptions botOptions, TelegramFacade telegramFacade) {
+        super(botOptions);
+        this.telegramFacade = telegramFacade;
     }
 
     @Override
@@ -34,16 +38,7 @@ public class MyTelegramBot extends TelegramWebhookBot {
 
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-        if (update.getMessage() != null && update.getMessage().hasText()) {
-            long chat_id = update.getMessage().getChatId();
-
-            try {
-                execute(new SendMessage(chat_id,"Hello" + update.getMessage().getText()));
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
+        SendMessage replyMessageToUser = telegramFacade.handleUpdate(update);
     }
 
     public void setWebHookPath(String webHookPath) {
