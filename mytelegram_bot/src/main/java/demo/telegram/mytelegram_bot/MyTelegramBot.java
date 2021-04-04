@@ -17,7 +17,7 @@ public class MyTelegramBot extends TelegramWebhookBot {
 
     public MyTelegramBot(DefaultBotOptions botOptions, TelegramFacade telegramFacade) {
         super(botOptions);
-        this.telegramFacade = this.telegramFacade;
+        this.telegramFacade = telegramFacade;
     }
 
     @Override

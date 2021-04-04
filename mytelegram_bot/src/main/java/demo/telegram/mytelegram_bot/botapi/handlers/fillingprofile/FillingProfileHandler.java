@@ -88,7 +88,7 @@ public class FillingProfileHandler implements InputMessageHandler {
         if (botState.equals(BotState.PROFILE_FILLED)){
             profileData.setSong(usersAnswer);
             userDataCache.setUsersCurrentBotState(userId, BotState.ASK_DESTINY);
-            replyToUser = new SendMessage(chatId, String.format("%s %s","Данные по вашей анкете", profileData));
+            replyToUser = new SendMessage(chatId, String.format("%s %s", "Data on your profile", profileData));
         }
 
         userDataCache.saveUserProileData(userId, profileData);

@@ -1,14 +1,14 @@
 package demo.telegram.mytelegram_bot.botapi;
 
-import demo.telegram.mytelegram_bot.botapi.BotState;
-import demo.telegram.mytelegram_bot.botapi.BotStateContext;
 import demo.telegram.mytelegram_bot.cache.UserDataCache;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
-
+@Component
+@Slf4j
 public class TelegramFacade {
     private BotStateContext botStateContext;
     private UserDataCache userDataCache;
@@ -23,7 +23,7 @@ public class TelegramFacade {
 
         Message message = update.getMessage();
         if (message != null && message.hasText()){
-           log.printf("New message from User:{}, chatId: {}, with text:{}",
+           log.info("New message from User:{}, chatId: {}, with text:{}",
                     message.getFrom().getUserName(), message.getChatId(), message.getText());
             replyMessage = handleInputMessage(message);
         }
@@ -40,10 +40,10 @@ public class TelegramFacade {
             case "/start" :
                 botState = BotState.ASK_DESTINY;
                 break;
-            case "Получить предсказание":
+            case "Take prediction":
                 botState = BotState.FILLING_PROFILE;
                 break;
-            case "Помощь":
+            case "Help":
                 botState = BotState.SHOW_HELP_MENU;
                 break;
             default:
