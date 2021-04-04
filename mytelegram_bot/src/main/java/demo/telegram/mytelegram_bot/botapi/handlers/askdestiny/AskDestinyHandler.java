@@ -29,7 +29,7 @@ public class AskDestinyHandler implements InputMessageHandler {
     @Override
     public BotState getHandlerName(){ return BotState.ASK_DESTINY; }
 
-    private SendMessage processUsersInput(Message message){
+    private SendMessage processUsersInput(Message inputMsg){
         int userId = inputMsg.getFrom().getId();
         long chatId = inputMsg.getChatId();
 

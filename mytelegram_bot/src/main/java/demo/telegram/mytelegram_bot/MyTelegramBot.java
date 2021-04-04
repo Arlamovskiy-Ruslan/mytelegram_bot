@@ -17,7 +17,7 @@ public class MyTelegramBot extends TelegramWebhookBot {
 
     public MyTelegramBot(DefaultBotOptions botOptions, TelegramFacade telegramFacade) {
         super(botOptions);
-        this.telegramFacade = telegramFacade;
+        this.telegramFacade = this.telegramFacade;
     }
 
     @Override
@@ -38,6 +38,8 @@ public class MyTelegramBot extends TelegramWebhookBot {
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
         SendMessage replyMessageToUser = telegramFacade.handleUpdate(update);
+
+        return replyMessageToUser;
     }
 
     public void setWebHookPath(String webHookPath) {

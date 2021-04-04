@@ -1,6 +1,7 @@
 package demo.telegram.mytelegram_bot.appconfig;
 
 import demo.telegram.mytelegram_bot.MyTelegramBot;
+import demo.telegram.mytelegram_bot.botapi.TelegramFacade;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -25,7 +26,7 @@ public class BotConfig {
     private int proxyPort;
 
     @Bean
-    public MyTelegramBot mySuperTelegramBot(){
+    public MyTelegramBot myTelegramBot(TelegramFacade telegramFacade){
         DefaultBotOptions options = ApiContext
                 .getInstance(DefaultBotOptions.class);
 
@@ -33,12 +34,12 @@ public class BotConfig {
         options.setProxyPort(proxyPort);
         options.setProxyType(proxyType);
 
-        MyTelegramBot mySuperTelegramBot = new MyTelegramBot(options);
-        mySuperTelegramBot.setBotUserName(botUserName);
-        mySuperTelegramBot.setBotToken(botToken);
-        mySuperTelegramBot.setWebHookPath(webHookPath);
+        MyTelegramBot myTelegramBot = new MyTelegramBot(options, telegramFacade);
+        myTelegramBot.setBotUserName(botUserName);
+        myTelegramBot.setBotToken(botToken);
+        myTelegramBot.setWebHookPath(webHookPath);
 
-        return mySuperTelegramBot;
+        return myTelegramBot;
     }
 
     @Bean
